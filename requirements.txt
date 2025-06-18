@@ -1,0 +1,8 @@
+djangorestframework
+drf-spectacular
+requests
+python-dotenv
+django_filter
+pillow
+django-cors-headers
+drf_writable_nested
