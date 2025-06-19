@@ -63,11 +63,20 @@ class CarTypeListView(generics.ListAPIView):
 class PublicDataView(generics.GenericAPIView):
     def get(self, request):
         data = serializers.CombinedCarSerializer({
+            "vehicle_type": models.VehicleType.objects.only('id', 'name'),
+            "deal_type": models.DealType.objects.only('id', 'name'),
             "car_type": models.CarType.objects.only('id', 'name'),
             "fuel": models.Fuel.objects.only('id', 'name'),
             "transmission": models.Transmission.objects.only('id', 'name'),
             "gearbox_box": models.GearBox.objects.only('id', 'name'),
             "color": models.CarColor.objects.only('id', 'name'),
+            "steering_wheel": models.SteeringWheel.objects.only('id', 'name'),
+            "condition": models.Condition.objects.only('id', 'name'),
+            "count_owner": models.CarOwner.objects.only('id', 'name'),
+            "custom": models.Custom.objects.only('id', 'name'),
+            "availability": models.Availability.objects.only('id', 'name'),
+            "region": models.Region.objects.only('id', 'name'),
+            "currency": models.Currency.objects.only('id', 'name'),
         }).data
         return Response(data, status=status.HTTP_200_OK)
 

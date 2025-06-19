@@ -2,6 +2,9 @@ from rest_framework import serializers
 from . import models
 from drf_writable_nested import WritableNestedModelSerializer
 
+from .models import SteeringWheel
+
+
 class CarTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CarType
@@ -60,12 +63,56 @@ class DealTypeSerializer(serializers.ModelSerializer):
         model = models.DealType
         fields = "__all__"
 
+class SteeringWheelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.SteeringWheel
+        fields = '__all__'
+
+class ConditionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Condition
+        fields = '__all__'
+
+class CarOwnerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Condition
+        fields = '__all__'
+
+class CustomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Custom
+        fields = '__all__'
+
+class AvailabilitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Availability
+        fields = '__all__'
+
+class RegionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Region
+        fields = '__all__'
+
+class CurrencySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Currency
+        fields = '__all__'
+
 class CombinedCarSerializer(serializers.Serializer):
+    vehicle_type = VehicleTypeSerializer(many=True)
+    deal_type = DealTypeSerializer(many=True)
     car_type = CarTypeSerializer(many=True)
     fuel = FuelSerializer(many=True)
     transmission = TransmissionSerializer(many=True)
     gearbox_box = GearBoxSerializer(many=True)
     color = CarColorSerializer(many=True)
+    steering_wheel = SteeringWheelSerializer(many=True)
+    condition = ConditionSerializer(many=True)
+    count_owner = CarOwnerSerializer(many=True)
+    custom = CustomSerializer(many=True)
+    availability = AvailabilitySerializer(many=True)
+    region = RegionSerializer(many=True)
+    currency = CurrencySerializer(many=True)
 
 # class CarImagePreviewSerializer(serializers.ModelSerializer):
 #     preview_img = serializers.SerializerMethodField(read_only=True)
