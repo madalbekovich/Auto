@@ -22,9 +22,6 @@ class DealType(models.Model):
 class VehicleType(models.Model):
     name = models.CharField('Тип Автомобиля', max_length=100)
 
-    def __str__(self):
-        return self.id
-
     class Meta:
         verbose_name = 'Тип автомобиля'
         verbose_name_plural = 'Тип автомобилей'
@@ -142,7 +139,7 @@ class CarPost(models.Model):
     region = models.ForeignKey('Region', on_delete=models.CASCADE, verbose_name='Регион продажи')
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE, verbose_name='Валюта цены')
 
-    year = models.IntegerField(default=1900, verbose_name='Год выпуска')
+    year = models.IntegerField(default=1900, verbose_name='Год выпуска', null=True, blank=True)
     engine_volume = models.FloatField(verbose_name='Объем двигателя (л)', null=True, blank=True)
 
     mileage = models.IntegerField(default=000000, verbose_name='Пробег')
@@ -165,6 +162,8 @@ class CarPost(models.Model):
         verbose_name = 'Объявление'
         verbose_name_plural = 'Объявления'
 
+    def __str__(self):
+        return self.description
     # def save(self, *args, **kwargs):
     #     if self.description:
     #         self.short_description = f"{self.description[:30]}.."

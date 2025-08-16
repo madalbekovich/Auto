@@ -129,15 +129,4 @@ SPECTACULAR_SETTINGS = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CORS_ALLOW_ALL_ORIGINS = True
-
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000',
-]
-
-CORS_ALLOW_ALL_HEADERS = True
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ALLOWED_HEADERS = ["*"]
-
-BASE_URL = 'http://localhost:8000/'
+\

@@ -153,5 +153,5 @@ class CarFavoriteListView(generics.ListAPIView):
     queryset = models.CarPost.objects.all()
     serializer_class = serializers.CarPostListSerializer
 
-    # def get_queryset(self):
-    #     return models.CarFavorite.objects.filter(user=self.request.user)
+    def get_queryset(self):
+        return models.CarFavorite.objects.filter(user=self.request.user)
